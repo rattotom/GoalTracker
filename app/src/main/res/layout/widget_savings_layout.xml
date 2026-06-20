@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_background"
+    android:padding="16dp"
+    android:gravity="center_vertical">
+
+    <!-- Header Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/widget_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Savings Goal"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:ellipsize="end"
+            android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/widget_percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0%"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <!-- Subtitle: Amounts -->
+    <TextView
+        android:id="@+id/widget_amount_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="$0 of $0 saved"
+        android:textSize="11sp"
+        android:textColor="#9E9E9E"
+        android:layout_marginTop="2dp" />
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/widget_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="12dp"
+        android:max="100"
+        android:progress="0"
+        android:progressBackgroundTint="#2C2C2C"
+        android:progressTint="#FFFFFF" />
+
+    <!-- Interactive Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Button: -$10 -->
+        <TextView
+            android:id="@+id/widget_btn_sub10"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/widget_button_bg"
+            android:text="-$10"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#E0E0E0"
+            android:focusable="true"
+            android:clickable="true" />
+
+        <!-- Button: +$10 -->
+        <TextView
+            android:id="@+id/widget_btn_add10"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/widget_button_bg"
+            android:text="+$10"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:focusable="true"
+            android:clickable="true" />
+
+        <!-- Button: +$50 -->
+        <TextView
+            android:id="@+id/widget_btn_add50"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/widget_button_bg"
+            android:text="+$50"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:focusable="true"
+            android:clickable="true" />
+
+        <!-- Button: Open -->
+        <TextView
+            android:id="@+id/widget_btn_open"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:background="@drawable/widget_button_bg"
+            android:text="App"
+            android:gravity="center"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="#9E9E9E"
+            android:focusable="true"
+            android:clickable="true" />
+    </LinearLayout>
+</LinearLayout>

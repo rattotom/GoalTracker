@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/widget_background">
+
+    <!-- Header info: Title & Percentage -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="2dp">
+
+        <TextView
+            android:id="@+id/widget_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Main Savings Goal"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/widget_percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0%"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <!-- Subtitle: Amounts -->
+    <TextView
+        android:id="@+id/widget_amount_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="$0 of $0 saved"
+        android:textSize="11sp"
+        android:textColor="#9E9E9E"
+        android:layout_marginBottom="12dp" />
+
+    <!-- 10x10 Grid View infographic container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="14dp">
+
+        <!-- Row 0 (dots 0-9) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <FrameLayout android:id="@+id/widget_dot_0" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_1" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_2" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_3" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_4" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_5" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_6" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_7" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_8" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_9" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+        </LinearLayout>
+
+        <!-- Row 1 (dots 10-19) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <FrameLayout android:id="@+id/widget_dot_10" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_11" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_12" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_13" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_14" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_15" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_16" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_17" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_18" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_19" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+        </LinearLayout>
+
+        <!-- Row 2 (dots 20-29) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <FrameLayout android:id="@+id/widget_dot_20" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_21" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_22" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_23" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_24" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_25" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_26" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_27" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_28" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_29" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+        </LinearLayout>
+
+        <!-- Row 3 (dots 30-39) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <FrameLayout android:id="@+id/widget_dot_30" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_31" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_32" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_33" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_34" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_35" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_36" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_37" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_38" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_39" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+        </LinearLayout>
+
+        <!-- Row 4 (dots 40-49) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <FrameLayout android:id="@+id/widget_dot_40" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_41" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_42" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_43" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_44" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_45" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_46" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_47" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_48" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_49" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+        </LinearLayout>
+
+        <!-- Row 5 (dots 50-59) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <FrameLayout android:id="@+id/widget_dot_50" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_51" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_52" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_53" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_54" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_55" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_56" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_57" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_58" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_59" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+        </LinearLayout>
+
+        <!-- Row 6 (dots 60-69) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <FrameLayout android:id="@+id/widget_dot_60" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_61" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_62" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_63" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_64" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_65" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_66" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_67" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_68" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_69" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+        </LinearLayout>
+
+        <!-- Row 7 (dots 70-79) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <FrameLayout android:id="@+id/widget_dot_70" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_71" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_72" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_73" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_74" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_75" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_76" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_77" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_78" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_79" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+        </LinearLayout>
+
+        <!-- Row 8 (dots 80-89) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <FrameLayout android:id="@+id/widget_dot_80" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_81" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_82" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_83" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_84" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_85" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_86" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_87" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_88" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_89" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+        </LinearLayout>
+
+        <!-- Row 9 (dots 90-99) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <FrameLayout android:id="@+id/widget_dot_90" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_91" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_92" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_93" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_94" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_95" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_96" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_97" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_98" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+            <FrameLayout android:id="@+id/widget_dot_99" android:layout_width="10dp" android:layout_height="10dp" android:layout_margin="1.5dp" android:background="@drawable/widget_dot_unfilled" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Interactive Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Button: -$10 -->
+        <TextView
+            android:id="@+id/widget_btn_sub10"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/widget_button_bg"
+            android:text="-$10"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#E0E0E0"
+            android:focusable="true"
+            android:clickable="true" />
+
+        <!-- Button: +$10 -->
+        <TextView
+            android:id="@+id/widget_btn_add10"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/widget_button_bg"
+            android:text="+$10"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:focusable="true"
+            android:clickable="true" />
+
+        <!-- Button: +$50 -->
+        <TextView
+            android:id="@+id/widget_btn_add50"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/widget_button_bg"
+            android:text="+$50"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:focusable="true"
+            android:clickable="true" />
+
+        <!-- Button: Open -->
+        <TextView
+            android:id="@+id/widget_btn_open"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:background="@drawable/widget_button_bg"
+            android:text="Open"
+            android:gravity="center"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="#9E9E9E"
+            android:focusable="true"
+            android:clickable="true" />
+    </LinearLayout>
+</LinearLayout>
