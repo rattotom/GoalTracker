@@ -14,6 +14,7 @@ import com.example.data.SavingsGoal
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
 
 class SavingsWidgetProvider : AppWidgetProvider() {
 
@@ -149,6 +150,7 @@ class SavingsWidgetProvider : AppWidgetProvider() {
                         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                     )
                     views.setOnClickPendingIntent(R.id.widget_btn_open, openAppPendingIntent)
+                    views.setOnClickPendingIntent(R.id.widget_root, openAppPendingIntent)
 
                     manager.updateAppWidget(id, views)
                 }

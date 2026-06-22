@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import com.example.ui.screens.DashboardScreen
 import com.example.ui.theme.MyApplicationTheme
 import com.example.viewmodel.SavingsViewModel
+import com.example.widget.SavingsWidgetProvider
 
 class MainActivity : ComponentActivity() {
   
@@ -20,16 +21,23 @@ class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
+    
+    // Force widgets to refresh with current package session binding
+    SavingsWidgetProvider.updateAllWidgets(this)
+
     setContent {
       MyApplicationTheme {
-        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-          DashboardScreen(
-            viewModel = viewModel,
-            modifier = Modifier.padding(innerPadding)
-          )
-        }
+        DashboardScreen(
+          viewModel = viewModel,
+          modifier = Modifier.fillMaxSize()
+        )
       }
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    SavingsWidgetProvider.updateAllWidgets(this)
   }
 }
 

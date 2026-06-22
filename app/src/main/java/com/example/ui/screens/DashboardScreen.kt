@@ -14,6 +14,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -39,6 +40,7 @@ import com.example.ui.components.RingGraphic
 import com.example.ui.components.ThermometerGraphic
 import com.example.ui.components.TreeGraphic
 import com.example.viewmodel.SavingsViewModel
+import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -53,6 +55,7 @@ fun DashboardScreen(
     val focusManager = LocalFocusManager.current
     val view = LocalView.current
     var isCreateSheetOpen by remember { mutableStateOf(false) }
+    var isCustomContributionOpen by remember { mutableStateOf(false) }
 
     // Proactively initialize a default "New Car" target if none exists so that the user immediately sees a working app
     LaunchedEffect(Unit) {
@@ -60,9 +63,8 @@ fun DashboardScreen(
     }
 
     Scaffold(
-        modifier = modifier
-            .fillMaxSize()
-            .background(Color(0xFF1A1C1E))
+        modifier = modifier.fillMaxSize(),
+        containerColor = Color(0xFF1A1C1E)
     ) { innerPadding ->
         Box(
             modifier = Modifier
@@ -120,34 +122,50 @@ fun DashboardScreen(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(horizontal = 16.dp)
-                            .padding(top = 12.dp, bottom = 12.dp)
+                            .padding(top = 16.dp, bottom = 24.dp)
                             .widthIn(max = 600.dp)
                             .align(Alignment.TopCenter),
-                        verticalArrangement = Arrangement.spacedBy(10.dp)
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         // 1. Sleek IMMERSIVE HEADER (replaces the redundant scaffold title and card)
                         Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 8.dp),
-                                horizontalArrangement = Arrangement.End,
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                IconButton(
-                                    onClick = { isCreateSheetOpen = true },
-                                    modifier = Modifier
-                                        .size(40.dp)
-                                        .clip(CircleShape)
-                                        .background(Color(0xFF3E4759).copy(alpha = 0.5f))
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Default.Settings,
-                                        contentDescription = "Configure Goal",
-                                        tint = Color(0xFFD0E4FF),
-                                        modifier = Modifier.size(20.dp)
-                                    )
-                                }
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column {
+                                Text(
+                                    text = goal.title.uppercase(),
+                                    color = Color.White,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Black,
+                                    letterSpacing = 1.sp
+                                )
+                                Text(
+                                    text = "SAVINGS GOAL",
+                                    color = Color(0xFF8D9199),
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    letterSpacing = 0.5.sp
+                                )
                             }
+                            IconButton(
+                                onClick = { isCreateSheetOpen = true },
+                                modifier = Modifier
+                                    .size(40.dp)
+                                    .clip(CircleShape)
+                                    .background(Color(0xFF3E4759).copy(alpha = 0.5f))
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Settings,
+                                    contentDescription = "Configure Goal",
+                                    tint = Color(0xFFD0E4FF),
+                                    modifier = Modifier.size(20.dp)
+                                )
+                            }
+                        }
 
                         // 2. Main interactive Graphic Display wrapper
                         val computedProgress = if (goal.targetAmount > 0) (goal.currentAmount / goal.targetAmount).toFloat() else 0f
@@ -157,11 +175,12 @@ fun DashboardScreen(
                                 shape = RoundedCornerShape(20.dp),
                                 modifier = Modifier
                                     .fillMaxWidth()
+                                    .weight(1.3f)
                                     .testTag("graphic_view_card")
                             ) {
                                 Box(
                                     modifier = Modifier
-                                        .fillMaxWidth()
+                                        .fillMaxSize()
                                         .padding(12.dp)
                                 ) {
                                     when (goal.displayStyle) {
@@ -170,13 +189,14 @@ fun DashboardScreen(
                                             currentAmount = goal.currentAmount,
                                             targetAmount = goal.targetAmount,
                                             currencySymbol = goal.currencySymbol,
-                                            modifier = Modifier.fillMaxWidth()
+                                            modifier = Modifier.fillMaxSize()
                                         )
                                         "ring" -> RingGraphic(
                                             progress = computedProgress,
                                             currentAmount = goal.currentAmount,
                                             targetAmount = goal.targetAmount,
                                             currencySymbol = goal.currencySymbol,
+                                            modifier = Modifier.fillMaxSize(),
                                             onProgressChange = { nextFraction ->
                                                 view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
                                                 viewModel.updateGoalProgress(goal, nextFraction)
@@ -187,6 +207,7 @@ fun DashboardScreen(
                                             currentAmount = goal.currentAmount,
                                             targetAmount = goal.targetAmount,
                                             currencySymbol = goal.currencySymbol,
+                                            modifier = Modifier.fillMaxSize(),
                                             onProgressChange = { nextFraction ->
                                                 view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
                                                 viewModel.updateGoalProgress(goal, nextFraction)
@@ -197,6 +218,7 @@ fun DashboardScreen(
                                             currentAmount = goal.currentAmount,
                                             targetAmount = goal.targetAmount,
                                             currencySymbol = goal.currencySymbol,
+                                            modifier = Modifier.fillMaxSize(),
                                             onProgressChange = { nextFraction ->
                                                 view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
                                                 viewModel.updateGoalProgress(goal, nextFraction)
@@ -207,6 +229,7 @@ fun DashboardScreen(
                                             currentAmount = goal.currentAmount,
                                             targetAmount = goal.targetAmount,
                                             currencySymbol = goal.currencySymbol,
+                                            modifier = Modifier.fillMaxSize(),
                                             onProgressChange = { nextFraction ->
                                                 view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
                                                 viewModel.updateGoalProgress(goal, nextFraction)
@@ -217,7 +240,7 @@ fun DashboardScreen(
                                             currentAmount = goal.currentAmount,
                                             targetAmount = goal.targetAmount,
                                             currencySymbol = goal.currencySymbol,
-                                            modifier = Modifier.fillMaxWidth()
+                                            modifier = Modifier.fillMaxSize()
                                         )
                                     }
                                 }
@@ -235,11 +258,14 @@ fun DashboardScreen(
                                 shape = RoundedCornerShape(20.dp),
                                 modifier = Modifier
                                     .fillMaxWidth()
+                                    .weight(1.1f)
                                     .testTag("grid_counter_card")
                             ) {
                                 Column(
-                                    modifier = Modifier.padding(16.dp),
-                                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(16.dp),
+                                    verticalArrangement = Arrangement.SpaceAround
                                 ) {
                                     Row(
                                         modifier = Modifier.fillMaxWidth(),
@@ -340,9 +366,16 @@ fun DashboardScreen(
                         Card(
                                 colors = CardDefaults.cardColors(containerColor = Color(0xFF222427)),
                                 shape = RoundedCornerShape(16.dp),
-                                modifier = Modifier.fillMaxWidth()
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .weight(0.9f)
                             ) {
-                                Column(modifier = Modifier.padding(12.dp)) { // Compact padding
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(12.dp),
+                                    verticalArrangement = Arrangement.SpaceAround
+                                ) {
                                     Row(
                                         modifier = Modifier.fillMaxWidth().padding(bottom = 2.dp),
                                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -393,8 +426,7 @@ fun DashboardScreen(
                                         val step1 = getNiceIncrement(target * 0.005)
                                         val step2 = getNiceIncrement(target * 0.02)
                                         val step3 = getNiceIncrement(target * 0.05)
-                                        val step4 = getNiceIncrement(target * 0.20)
-                                        val increments = listOf(step1, step2, step3, step4).map { it.coerceAtLeast(1.0) }.distinct()
+                                        val increments = listOf(step1, step2, step3).map { it.coerceAtLeast(1.0) }.distinct()
 
                                         increments.forEach { increment ->
                                             val textLabel = when {
@@ -426,6 +458,29 @@ fun DashboardScreen(
                                                     fontWeight = FontWeight.Bold
                                                 )
                                             }
+                                        }
+
+                                        // Custom Contribution Button replacing the fourth add option
+                                        Button(
+                                            onClick = {
+                                                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+                                                isCustomContributionOpen = true
+                                            },
+                                            colors = ButtonDefaults.buttonColors(
+                                                containerColor = Color(0xFFD0E4FF),
+                                                contentColor = Color(0xFF003258)
+                                            ),
+                                            contentPadding = PaddingValues(horizontal = 4.dp),
+                                            modifier = Modifier
+                                                .weight(1f)
+                                                .height(36.dp)
+                                                .testTag("add_custom_contribution_button")
+                                        ) {
+                                            Text(
+                                                text = "Custom",
+                                                fontSize = 11.sp,
+                                                fontWeight = FontWeight.Bold
+                                            )
                                         }
                                     }
                                 }
@@ -522,7 +577,7 @@ fun DashboardScreen(
                     // Display Graphic Mode dropdown segment selector
                     Text("Display Graphic Mode:", color = Color(0xFF8D9199), fontSize = 13.sp)
                     val styleOptions = listOf(
-                        StyleBtn("grid", "Grid", Icons.Default.List),
+                        StyleBtn("grid", "Grid", Icons.AutoMirrored.Filled.List),
                         StyleBtn("ring", "Gauge", Icons.Default.Star),
                         StyleBtn("jar", "Jar", Icons.Default.Favorite),
                         StyleBtn("thermometer", "Glass", Icons.Default.PlayArrow),
@@ -683,6 +738,97 @@ fun DashboardScreen(
             },
             dismissButton = {
                 TextButton(onClick = { isCreateSheetOpen = false }) {
+                    Text("Cancel", color = Color(0xFF8D9199))
+                }
+            }
+        )
+    }
+
+    if (isCustomContributionOpen) {
+        val currentGoal = primaryGoal
+        var contributionInput by remember(isCustomContributionOpen) { mutableStateOf("") }
+        var inputErrorMsg by remember { mutableStateOf<String?>(null) }
+
+        AlertDialog(
+            onDismissRequest = { isCustomContributionOpen = false },
+            containerColor = Color(0xFF222427),
+            title = {
+                Text(
+                    text = "Custom Contribution",
+                    color = Color.White,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Text(
+                        text = "Enter the amount you would like to contribute to your goal:",
+                        color = Color(0xFF8D9199),
+                        fontSize = 14.sp
+                    )
+
+                    OutlinedTextField(
+                        value = contributionInput,
+                        onValueChange = {
+                            contributionInput = it
+                            inputErrorMsg = null
+                        },
+                        label = { Text("Contribution Amount (${currentGoal?.currencySymbol ?: "$"})") },
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Number,
+                            imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = Color(0xFFD0E4FF),
+                            unfocusedBorderColor = Color(0xFF3E4759),
+                            focusedLabelColor = Color(0xFFD0E4FF),
+                            unfocusedLabelColor = Color(0xFF8D9199),
+                            focusedTextColor = Color.White,
+                            unfocusedTextColor = Color.White
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .testTag("input_custom_contribution")
+                    )
+
+                    inputErrorMsg?.let { errorMsg ->
+                        Text(
+                            text = errorMsg,
+                            color = Color(0xFFEF4444),
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        val amount = contributionInput.toDoubleOrNull()
+                        if (amount == null || amount <= 0) {
+                            inputErrorMsg = "Please enter a positive amount"
+                        } else {
+                            if (currentGoal != null) {
+                                val nextAmt = (currentGoal.currentAmount + amount).coerceAtMost(currentGoal.targetAmount)
+                                viewModel.updateGoalAmount(currentGoal, nextAmt)
+                            }
+                            isCustomContributionOpen = false
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFD0E4FF),
+                        contentColor = Color(0xFF003258)
+                    ),
+                    modifier = Modifier.testTag("dialog_custom_contribution_confirm")
+                ) {
+                    Text("Add", color = Color(0xFF003258), fontWeight = FontWeight.Bold)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { isCustomContributionOpen = false }) {
                     Text("Cancel", color = Color(0xFF8D9199))
                 }
             }

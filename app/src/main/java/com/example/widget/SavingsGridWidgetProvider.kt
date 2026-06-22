@@ -14,6 +14,7 @@ import com.example.data.SavingsGoal
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
 
 class SavingsGridWidgetProvider : AppWidgetProvider() {
 
@@ -123,7 +124,7 @@ class SavingsGridWidgetProvider : AppWidgetProvider() {
                             val dotId = context.resources.getIdentifier(dotResName, "id", context.packageName)
                             if (dotId != 0) {
                                 val drawableRes = if (i < pct) R.drawable.widget_dot_filled else R.drawable.widget_dot_unfilled
-                                views.setInt(dotId, "setBackgroundResource", drawableRes)
+                                views.setImageViewResource(dotId, drawableRes)
                             }
                         }
                     }
@@ -153,6 +154,7 @@ class SavingsGridWidgetProvider : AppWidgetProvider() {
                         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                     )
                     views.setOnClickPendingIntent(R.id.widget_btn_open, openAppPendingIntent)
+                    views.setOnClickPendingIntent(R.id.widget_root, openAppPendingIntent)
 
                     manager.updateAppWidget(id, views)
                 }

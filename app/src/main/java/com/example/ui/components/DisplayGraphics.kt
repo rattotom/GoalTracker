@@ -34,6 +34,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.atan2
 import kotlin.math.cos
+import kotlin.math.roundToInt
 import kotlin.math.sin
 
 /**
@@ -628,7 +629,7 @@ fun ThermometerGraphic(
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Black
                 )
-                Divider(
+                HorizontalDivider(
                     color = Color(0xFF3E4759),
                     thickness = 1.dp,
                     modifier = Modifier.padding(vertical = 8.dp)
@@ -861,9 +862,10 @@ fun GridViewInfographic(
     val pct = (progress * 100).toInt().coerceIn(0, 100)
     Column(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxSize()
+            .padding(12.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
         // Minimalist description of the grid
         Row(
@@ -880,11 +882,6 @@ fun GridViewInfographic(
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = "$currencySymbol${String.format("%,.0f", currentAmount)} / $currencySymbol${String.format("%,.0f", targetAmount)}",
-                color = Color(0xFF8D1214).copy(alpha = 0f), // Anchor invisible spacer but cleaner form
-                fontSize = 11.sp
-            )
-            Text(
                 text = "Target: $currencySymbol${String.format("%,.0f", targetAmount)}",
                 color = Color(0xFF8D9199),
                 fontSize = 11.sp,
@@ -892,27 +889,40 @@ fun GridViewInfographic(
             )
         }
 
-        // 10x10 grid with beautifully styled rounded boxes
-        Column(
-            verticalArrangement = Arrangement.spacedBy(6.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+        // 10x10 grid with beautifully styled rounded boxes that scale dynamically
+        androidx.compose.foundation.layout.BoxWithConstraints(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            contentAlignment = Alignment.Center
         ) {
-            for (row in 0 until 10) {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(6.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    for (col in 0 until 10) {
-                        val index = row * 10 + col
-                        val isFilled = index < pct
-                        val color = if (isFilled) Color.White else Color(0xFF333333)
-                        Box(
-                            modifier = Modifier
-                                .size(20.dp)
-                                .clip(RoundedCornerShape(4.dp))
-                                .background(color)
-                                .testTag("grid_dot_${index}")
-                        )
+            val totalSpacing = 6.dp * 9
+            val availableWidth = maxWidth - 16.dp
+            // Dynamic cell calculation to keep them beautifully squarish and proportional
+            val computedSize = ((availableWidth - totalSpacing) / 10).coerceAtMost(32.dp).coerceAtLeast(18.dp)
+            val cornerRadius = (computedSize * 0.2f).coerceAtLeast(3.dp)
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(6.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                for (row in 0 until 10) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(6.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        for (col in 0 until 10) {
+                            val index = row * 10 + col
+                            val isFilled = index < pct
+                            val color = if (isFilled) Color.White else Color(0xFF333333)
+                            Box(
+                                modifier = Modifier
+                                    .size(computedSize)
+                                    .clip(RoundedCornerShape(cornerRadius))
+                                    .background(color)
+                                    .testTag("grid_dot_${index}")
+                            )
+                        }
                     }
                 }
             }
