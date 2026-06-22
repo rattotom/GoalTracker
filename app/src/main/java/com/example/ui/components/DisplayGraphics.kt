@@ -871,7 +871,7 @@ fun GridViewInfographic(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 12.dp),
+                .padding(bottom = 8.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -896,24 +896,38 @@ fun GridViewInfographic(
                 .weight(1f),
             contentAlignment = Alignment.Center
         ) {
-            val totalSpacing = 6.dp * 9
+            val rows = 10
+            val cols = 10
+            val gap = 4.dp
+            
+            val totalSpacingX = gap * (cols - 1)
+            val totalSpacingY = gap * (rows - 1)
+            
             val availableWidth = maxWidth - 16.dp
-            // Dynamic cell calculation to keep them beautifully squarish and proportional
-            val computedSize = ((availableWidth - totalSpacing) / 10).coerceAtMost(32.dp).coerceAtLeast(18.dp)
-            val cornerRadius = (computedSize * 0.2f).coerceAtLeast(3.dp)
+            val availableHeight = maxHeight - 16.dp
+            
+            // Dynamic cell calculation targeting perfect aspect-ratio fitting in BOTH width and height:
+            val sizeByWidth = (availableWidth - totalSpacingX) / cols
+            val sizeByHeight = (availableHeight - totalSpacingY) / rows
+            
+            // Cells are guaranteed to be square as they use size(computedSize)
+            val computedSize = minOf(sizeByWidth, sizeByHeight).coerceAtLeast(4.dp)
+            val cornerRadius = (computedSize * 0.2f).coerceAtLeast(1.5.dp)
 
             Column(
-                verticalArrangement = Arrangement.spacedBy(6.dp),
+                verticalArrangement = Arrangement.spacedBy(gap),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                for (row in 0 until 10) {
+                val totalBlocks = rows * cols
+                val filledBlocks = pct.coerceIn(0, totalBlocks)
+                for (row in 0 until rows) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(6.dp),
+                        horizontalArrangement = Arrangement.spacedBy(gap),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        for (col in 0 until 10) {
-                            val index = row * 10 + col
-                            val isFilled = index < pct
+                        for (col in 0 until cols) {
+                            val index = row * cols + col
+                            val isFilled = index < filledBlocks
                             val color = if (isFilled) Color.White else Color(0xFF333333)
                             Box(
                                 modifier = Modifier

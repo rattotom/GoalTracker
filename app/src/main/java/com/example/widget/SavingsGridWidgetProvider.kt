@@ -15,6 +15,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.RectF
 
 class SavingsGridWidgetProvider : AppWidgetProvider() {
 
@@ -118,15 +122,46 @@ class SavingsGridWidgetProvider : AppWidgetProvider() {
                             "$currency$formattedCurrent of $currency$formattedTarget saved"
                         )
                         
-                        // Render the 10x10 Grid View infographic:
-                        for (i in 0 until 100) {
-                            val dotResName = "widget_dot_$i"
-                            val dotId = context.resources.getIdentifier(dotResName, "id", context.packageName)
-                            if (dotId != 0) {
-                                val drawableRes = if (i < pct) R.drawable.widget_dot_filled else R.drawable.widget_dot_unfilled
-                                views.setImageViewResource(dotId, drawableRes)
+                        // Draw pristine 10x10 Grid View infographic (100% fidelity) on a Bitmap:
+                        val size = 300
+                        val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
+                        val canvas = Canvas(bitmap)
+                        
+                        val paintFilled = Paint().apply {
+                            color = android.graphics.Color.WHITE
+                            style = Paint.Style.FILL
+                            isAntiAlias = true
+                        }
+                        
+                        val paintUnfilled = Paint().apply {
+                            color = android.graphics.Color.parseColor("#333333")
+                            style = Paint.Style.FILL
+                            isAntiAlias = true
+                        }
+                        
+                        val rows = 10
+                        val cols = 10
+                        val spacing = 5f
+                        val cellSize = (size - (spacing * (cols - 1))) / cols
+                        val cornerRadius = cellSize * 0.2f
+                        
+                        val totalBlocks = rows * cols
+                        val filledBlocks = pct.coerceIn(0, totalBlocks)
+                        
+                        for (row in 0 until rows) {
+                            for (col in 0 until cols) {
+                                val index = row * cols + col
+                                val left = col * (cellSize + spacing)
+                                val top = row * (cellSize + spacing)
+                                val right = left + cellSize
+                                val bottom = top + cellSize
+                                
+                                val paint = if (index < filledBlocks) paintFilled else paintUnfilled
+                                canvas.drawRoundRect(RectF(left, top, right, bottom), cornerRadius, cornerRadius, paint)
                             }
                         }
+                        
+                        views.setImageViewBitmap(R.id.widget_grid_canvas, bitmap)
                     }
 
                     // Set up pending intents for active buttons
